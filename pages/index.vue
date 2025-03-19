@@ -181,7 +181,7 @@
 
 .cursor-dot-visible {
   opacity: 1;
-  right: 5.6rem; /* Final position between MATI and SS */
+  right: 6rem; /* Final position between MATI and SS */
 }
 
 .cursor-container {
