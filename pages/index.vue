@@ -3,7 +3,7 @@
     <!-- Header section similar to Azuki -->
     <div class="header-section">
       <div class="made-with">
-        Made with <span class="text-red-600">LOVE</span>
+        Made with <span class="text-red-600">NUXT</span>
       </div>
       <div class="header-info">
         <div class="header-item">
