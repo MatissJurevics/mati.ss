@@ -181,7 +181,7 @@
 
 .cursor-dot-visible {
   opacity: 1;
-  right: 6rem; /* Final position between MATI and SS */
+  right: calc(4rem + 26px); /* Final position between MATI and SS */
 }
 
 .cursor-container {
@@ -299,6 +299,10 @@
     width: 10px;
     right: -1.5rem;
     transform: translateY(-8px);
+  }
+
+  .cursor-dot-visible {
+    right: calc(4rem + 12px); /* Final position between MATI and SS */
   }
   
   .header-info {
