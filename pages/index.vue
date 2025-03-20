@@ -280,7 +280,7 @@
   .cursor-dot-final {
     width: 10px;
     height: 10px;
-    transform: translateY(-10px);
+    transform: translateY(0px);
   }
   
   .cursor-hello {
@@ -291,18 +291,18 @@
   .cursor-matiss {
     height: 40px;
     right: -1.5rem;
-    transform: translateY(-8px);
+    transform: translateY(0px);
   }
   
   .cursor-finished {
     height: 10px; /* Smaller dot for mobile */
     width: 10px;
     right: -1.5rem;
-    transform: translateY(-8px);
+    transform: translateY(0px);
   }
 
   .cursor-dot-visible {
-    right: calc(4rem + 12px); /* Final position between MATI and SS */
+    right: calc(4rem - 2px); /* Final position between MATI and SS */
   }
   
   .header-info {
