@@ -99,7 +99,7 @@
   display: flex;
   flex-direction: column;
   background-color: #f5f5f0;
-  font-family: "Playfair Display", sans-serif;
+  font-family: 'Helvetica', sans-serif;
   color: #000;
 }
 
@@ -141,7 +141,7 @@
 
 .typing-container {
   display: inline-block;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: "Playfair Display", 'Times New Roman', serif;
   position: relative;
 }
 
