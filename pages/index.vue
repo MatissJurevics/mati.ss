@@ -88,13 +88,18 @@
   </div>
 </template>
 
+
+
+
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 .azuki-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #f5f5f0;
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Playfair Display", sans-serif;
   color: #000;
 }
 
