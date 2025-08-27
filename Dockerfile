@@ -9,7 +9,7 @@ COPY . /usr/share/nginx/html/
 
 # Create custom nginx configuration for SPA routing
 RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
-    echo '    listen 80;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    listen 3000;' >> /etc/nginx/conf.d/default.conf && \
     echo '    server_name localhost;' >> /etc/nginx/conf.d/default.conf && \
     echo '    root /usr/share/nginx/html;' >> /etc/nginx/conf.d/default.conf && \
     echo '    index index.html;' >> /etc/nginx/conf.d/default.conf && \
