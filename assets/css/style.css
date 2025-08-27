@@ -278,6 +278,9 @@ main {
     background: rgba(0,0,0,0.85);
     align-items: center;
     justify-content: center;
+    /* Allow scrolling on mobile when modal is open */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
@@ -600,6 +603,10 @@ main {
     .modal-content {
         padding: 1.25rem;
         max-width: 98vw;
+        /* Allow modal content to scroll if needed on mobile */
+        max-height: 95vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     #gallery-main-image-container {
         height: 28vh;
