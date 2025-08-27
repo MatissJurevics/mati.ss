@@ -3,31 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="public/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Matiss</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav class="fixed top-5 right-5 z-[1000]">
-        <div class="relative">
-            <button id="dropdownButton" class="bg-[#2d2f3a] text-white border-none px-4 py-2 rounded cursor-pointer focus:outline-none">
-                Menu
-            </button>
-            <ul id="dropdownMenu" class="hidden absolute right-0 top-full bg-[#2d2f3a] text-white list-none m-0 p-0 rounded shadow-lg min-w-[120px]">
-                <li>
-                    <a href="#" class="block px-4 py-2 text-white no-underline hover:bg-[#393b47] rounded-t">Option 1</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 text-white no-underline hover:bg-[#393b47]">Option 2</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 text-white no-underline hover:bg-[#393b47] rounded-b">Option 3</a>
-                </li>
-            </ul>
+    <div id="wave-canvas-container"></div>
+    <main class="hero">
+        <img src="assets/img/lines.svg" alt="Decorative lines" class="hero-lines">
+        
+        <div class="hero-content">
+            <h1 class="hero-title hero-text">Hey, my name is <br><span class="hero-title-highlight">Matiss</span></h1>
+            <p class="hero-subtitle hero-text">I'm an engineer who builds solutions for me and others.</p>
+            <a href="#contact" class="hero-button hero-text">Get In Touch</a>
         </div>
-    </nav>
-    <div class="grid"></div>
-    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
-    <script src="public/js/script.js"></script>
+    </main>
+    <section id="projects" class="projects-section">
+        <h2 class="projects-title">Projects</h2>
+        <div class="projects-list">
+            <article class="project-card">
+                <img src="assets/img/movesync/1.png" alt="Project 1 Screenshot" class="project-image" />
+                <div class="project-info">
+                    <h3 class="project-name">MoveSync</h3>
+                    <p class="project-description">
+                        A platform that allows people to share motions that others can replicate to improve their form
+                    </p>
+                </div>
+            </article>
+            <article class="project-card">
+                <img src="assets/img/scripts/2.png" alt="Project 2 Screenshot" class="project-image" />
+                <div class="project-info">
+                    <h3 class="project-name">ATTiny85 Script Manager</h3>
+                    <p class="project-description">
+                        A script manager for a Digispark ATTiny85 microcontroller that allows it to run any script you want
+                    </p>
+                </div>
+            </article>
+            <article class="project-card">
+                <img src="assets/img/gene/1.png" alt="Project 3 Screenshot" class="project-image" />
+                <div class="project-info">
+                    <h3 class="project-name">Gene</h3>
+                    <p class="project-description">
+                        An AI note taking assistant built to help people in college lectures by cleaning up and explaining their notes (and more).
+                    </p>
+                </div>
+            </article>
+        <a href="https://github.com/matissjurevics" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub">
+            <svg class="github-logo" height="24" width="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="vertical-align: middle; margin-right: 0.5em;">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+                -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+                -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64
+                -.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08
+                2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+                1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            Visit my GitHub
+        </a>
+        <!-- Modal Structure -->
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <button id="modal-close-btn" aria-label="Close">&times;</button>
+                <div id="modal-gallery">
+                    <div id="gallery-main-image-container">
+                        <button id="gallery-prev-btn" aria-label="Previous Image">&#8592;</button>
+                        <img id="gallery-main-image" src="" alt="Project Image" />
+                        <button id="gallery-next-btn" aria-label="Next Image">&#8594;</button>
+                    </div>
+                    <div id="gallery-thumbnails"></div>
+                </div>
+                <div class="modal-info">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-description"></p>
+                    <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+        </div>
+        <script>
+        // Project details data
+        const projectDetails = [
+            {
+                name: "MoveSync",
+                description: "MoveSync is a platform that allowed people to record themselves doing a movement (like a underhand swing in tennis or a dance), and post it so that others could try recreate those movements.",
+                images: [
+                    "assets/img/movesync/1.png",
+                    "assets/img/movesync/2.png",
+                    "assets/img/movesync/3.png",
+                    "assets/img/movesync/4.png",
+                    "assets/img/movesync/5.png",
+                    "assets/img/movesync/6.png",
+                    "assets/img/movesync/7.png",
+                ],
+                link: "https://github.com/matissjurevics/movesync"
+            },
+            {
+                name: "ATTiny85 Script Manager",
+                description: "I made this to address the a problem i was having. USB rubber ducky is a tool used to replicate keystrokes but they're extreamely expensive, an alrernative is to use a microcontroller called a Digispare ATTiny85 but it comes with the constraint of not having much memory so i developed a web interface that allows you to run any script you want on ot on demand by having it download it from a web server. This means that you can change what script runs off the device by just switching it on your phone or laptop",
+                images: [
+                    "assets/img/scripts/1.png",
+                    "assets/img/scripts/2.png",
+                    "assets/img/scripts/3.png",
+                    "assets/img/scripts/4.png",
+                    "assets/img/scripts/5.png",
+                    "assets/img/scripts/6.png",
+                    "assets/img/scripts/7.png",
+                    "assets/img/scripts/8.png"
+                ],
+                link: "https://github.com/MatissJurevics/script-server"
+            },
+            {
+                name: "Gene",
+                description: "Gene is an AI note taking assistant that I developed as an aid for people in college lectures. It is build for obsidian and tidies up your notes, adds summaries, explains difficult concepts and more. It has been used by over 3 thousand people.",
+                images: [
+                    "assets/img/gene/1.png"
+                ],
+                link: "https://github.com/MatissJurevics/Gene-AI"
+            }
+        ];
+
+        // Modal logic for new modal structure
+        const modal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalLink = document.getElementById('modal-link');
+        const closeModalBtn = document.getElementById('modal-close-btn');
+        const galleryMainImage = document.getElementById('gallery-main-image');
+        const galleryThumbnails = document.getElementById('gallery-thumbnails');
+        const galleryPrevBtn = document.getElementById('gallery-prev-btn');
+        const galleryNextBtn = document.getElementById('gallery-next-btn');
+
+        let currentProjectIdx = 0;
+        let currentImageIdx = 0;
+
+        function updateGallery(project, imageIdx) {
+            // Set main image
+            galleryMainImage.src = project.images[imageIdx];
+            galleryMainImage.alt = project.name + " image " + (imageIdx + 1);
+
+            // Clear and repopulate thumbnails
+            galleryThumbnails.innerHTML = '';
+            project.images.forEach((src, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.alt = project.name + " thumbnail " + (idx + 1);
+                thumb.style.width = "60px";
+                thumb.style.height = "40px";
+                thumb.style.objectFit = "cover";
+                thumb.style.borderRadius = "0.4rem";
+                thumb.style.cursor = "pointer";
+                thumb.style.boxShadow = idx === imageIdx ? "0 0 0 2px #F55B19" : "0 1px 4px rgba(0,0,0,0.08)";
+                thumb.style.opacity = idx === imageIdx ? "1" : "0.7";
+                thumb.addEventListener('click', function() {
+                    currentImageIdx = idx;
+                    updateGallery(project, currentImageIdx);
+                });
+                galleryThumbnails.appendChild(thumb);
+            });
+
+            // Update prev/next button state
+            galleryPrevBtn.disabled = (imageIdx === 0);
+            galleryNextBtn.disabled = (imageIdx === project.images.length - 1);
+            galleryPrevBtn.style.opacity = galleryPrevBtn.disabled ? "0.4" : "1";
+            galleryNextBtn.style.opacity = galleryNextBtn.disabled ? "0.4" : "1";
+        }
+
+        function openModal(projectIdx) {
+            currentProjectIdx = projectIdx;
+            currentImageIdx = 0;
+            const project = projectDetails[projectIdx];
+            modalTitle.textContent = project.name;
+            modalDescription.textContent = project.description;
+            modalLink.href = project.link;
+            updateGallery(project, currentImageIdx);
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === "flex" && (e.key === "Escape" || e.key === "Esc")) {
+                closeModal();
+            }
+            // Keyboard navigation for gallery
+            if (modal.style.display === "flex") {
+                if (e.key === "ArrowLeft") {
+                    if (currentImageIdx > 0) {
+                        currentImageIdx--;
+                        updateGallery(projectDetails[currentProjectIdx], currentImageIdx);
+                    }
+                }
+                if (e.key === "ArrowRight") {
+                    if (currentImageIdx < projectDetails[currentProjectIdx].images.length - 1) {
+                        currentImageIdx++;
+                        updateGallery(projectDetails[currentProjectIdx], currentImageIdx);
+                    }
+                }
+            }
+        });
+
+        galleryPrevBtn.addEventListener('click', function() {
+            if (currentImageIdx > 0) {
+                currentImageIdx--;
+                updateGallery(projectDetails[currentProjectIdx], currentImageIdx);
+            }
+        });
+
+        galleryNextBtn.addEventListener('click', function() {
+            if (currentImageIdx < projectDetails[currentProjectIdx].images.length - 1) {
+                currentImageIdx++;
+                updateGallery(projectDetails[currentProjectIdx], currentImageIdx);
+            }
+        });
+
+        // Attach click handlers to project cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card, idx) => {
+                card.style.cursor = "pointer";
+                card.addEventListener('click', function(e) {
+                    // Prevent link click from triggering modal twice
+                    if (e.target.closest('.project-link')) return;
+                    openModal(idx);
+                });
+            });
+        });
+        </script>
+        </div>
+    </section>
+<section id="contact" class="contact-section">
+    <h2 class="contact-title">
+        Get In Touch
+    </h2>
+    <p class="contact-description">
+        Interested in working together or have a question? Fill out the form below or email me directly at 
+        <a href="mailto:matiss@example.com" class="contact-email">im@mati.ss</a>.
+    </p>
+    <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required autocomplete="name">
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email">
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="contact-submit">
+            Send Message
+        </button>
+    </form>
+</section>
+
+    
+</main>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS with your user/public key
+    emailjs.init('d0vOCDiHKgAlgjbLA'); // Replace with your EmailJS public key
+
+    const contactForm = document.querySelector('.contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Disable the submit button to prevent multiple submissions
+        const submitButton = contactForm.querySelector('.contact-submit');
+        if (submitButton) submitButton.disabled = true;
+
+        // Collect form data
+        const formData = {
+            name: contactForm.name.value.trim(),
+            email: contactForm.email.value.trim(),
+            message: contactForm.message.value.trim()
+        };
+
+        // Validate form data (basic)
+        if (!formData.name || !formData.email || !formData.message) {
+            alert('Please fill in all fields.');
+            if (submitButton) submitButton.disabled = false;
+            return;
+        }
+
+        // EmailJS parameters
+        const serviceID = 'service_4ia4s9i'; // Replace with your EmailJS service ID
+        const templateID = 'template_but8u3v'; // Replace with your EmailJS template ID
+
+        emailjs.send(serviceID, templateID, formData)
+            .then(function(response) {
+                alert('Message sent successfully!');
+                contactForm.reset();
+            }, function(error) {
+                alert('Failed to send message. Please try again later.');
+                // Optionally log error: console.error('EmailJS error:', error);
+            })
+            .finally(function() {
+                if (submitButton) submitButton.disabled = false;
+            });
+    });
+});
+</script>
+
 </body>
 </html>

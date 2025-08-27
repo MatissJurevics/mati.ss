@@ -1,0 +1,774 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    background-color: #E5E5E5;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+
+.hero-lines {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0vw;
+}
+
+.hero-lines img {
+    width: 30vw;
+    min-width: 120px;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    pointer-events: none;
+}
+
+.hero-disk {
+    position: absolute;
+    z-index: 1;
+    top: 5rem;
+    right: 5rem;
+    width: 12rem;
+    height: 12rem;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+#wave-canvas-container {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.hero-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.1;
+    word-break: break-word;
+    opacity: 1;
+}
+
+.hero-title-highlight {
+    background: #F55B19;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    margin-top: 0.25em;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 50rem;
+    font-weight: 400;
+    color: #535353;
+    line-height: 1.4;
+}
+
+.hero-subtitle-highlight {
+    color: #000;
+    font-weight: 700;
+}
+
+.hero-button {
+    font-size: 2rem;
+    color: #F55B19;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+}
+
+.hero-button:hover {
+    text-decoration: underline;
+}
+.projects-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.projects-section {
+    width: 100vw;
+    min-height: 100vh;
+    background: #f8f8f800;
+    padding: 6rem 0 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    z-index: 10;
+    position: relative;
+}
+
+.projects-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+    text-align: left;
+    margin-left: 3vw;
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 700px;
+    align-items: flex-start;
+    margin-left: 3vw;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem;
+    border-bottom: 1.5px solid #ececec;
+    transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+.project-card:hover {
+    background: #f8f8f8;
+    transform: translateY(-2px) scale(1.015);
+    z-index: 1;
+    box-shadow: 0 4px 24px rgba(245, 91, 25, 0.10);
+    border-radius: 0.75rem;
+}
+
+.project-card:last-child {
+    border-bottom: none;
+}
+
+.project-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    background: #ececec;
+    border-radius: 0.75rem;
+    margin-right: 2rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(245,91,25,0.07);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 0.5rem 0;
+    text-align: left;
+}
+
+.project-name {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #F55B19;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+    text-align: left;
+}
+
+.project-description {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.project-link {
+    background: none;
+    color: #F55B19;
+    font-weight: 600;
+    padding: 0;
+    border-radius: 0.5rem;
+    text-decoration: underline;
+    font-size: 1rem;
+    transition: color 0.18s;
+    box-shadow: none;
+    display: inline-block;
+    text-align: left;
+}
+
+.project-link:hover,
+.project-link:focus {
+    color: #d94a0f;
+    outline: none;
+}
+.contact-section {
+    width: 100vw;
+    min-height: 100vh;
+    background: #ffffff00;
+    padding: 6rem 0 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 10;
+    position: relative;
+    justify-content: center;
+}
+/** Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 1.5rem;
+    max-width: 1200px;
+    width: 95vw;
+    max-height: 95vh;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+#modal-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #888;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.18s;
+}
+#modal-close-btn:hover,
+#modal-close-btn:focus {
+    color: #F55B19;
+    outline: none;
+}
+
+.modal-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+#modal-title {
+    font-size: 2rem;
+    color: #F55B19;
+    margin-bottom: 1rem;
+    word-break: break-word;
+}
+
+#modal-description {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 2rem;
+    word-break: break-word;
+}
+
+#modal-link {
+    color: #F55B19;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.1rem;
+    align-self: flex-start;
+    transition: color 0.18s;
+}
+#modal-link:hover,
+#modal-link:focus {
+    color: #d94a0f;
+    outline: none;
+}
+
+/* Gallery at the bottom of modal */
+#modal-gallery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: auto;
+    gap: 1.25rem;
+}
+
+#gallery-main-image-container {
+    width: 100%;
+    height: 40vh;
+    min-height: 220px;
+    max-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+#gallery-main-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0.75rem;
+    object-fit: contain;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+#gallery-prev-btn,
+#gallery-next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    color: #F55B19;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s, color 0.18s;
+}
+#gallery-prev-btn {
+    left: 1rem;
+}
+#gallery-next-btn {
+    right: 1rem;
+}
+#gallery-prev-btn:hover,
+#gallery-next-btn:hover,
+#gallery-prev-btn:focus,
+#gallery-next-btn:focus {
+    background: #F55B19;
+    color: #fff;
+    outline: none;
+}
+
+#gallery-thumbnails {
+    margin-top: 0;
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 0.25rem;
+}
+
+#gallery-thumbnails img {
+    width: 60px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.18s, box-shadow 0.18s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+#gallery-thumbnails img.active,
+#gallery-thumbnails img:focus {
+    border: 2px solid #F55B19;
+    box-shadow: 0 2px 8px rgba(245,91,25,0.12);
+    outline: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 900px) {
+    .modal-content {
+        flex-direction: column;
+        gap: 2.5rem;
+        max-width: 700px;
+        padding: 2.5rem 3.5rem;
+    }
+    .modal-info {
+        margin-bottom: 2.5rem;
+    }
+    #gallery-main-image-container {
+        height: 45vh;
+        min-height: 260px;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 700px) {
+    .modal-content {
+        padding: 1.25rem;
+        max-width: 98vw;
+    }
+    #gallery-main-image-container {
+        height: 28vh;
+        min-height: 120px;
+        max-height: 180px;
+    }
+    #gallery-thumbnails img {
+        width: 44px;
+        height: 34px;
+    }
+}
+
+/* Hide scrollbars for thumbnails on Webkit browsers */
+#gallery-thumbnails::-webkit-scrollbar {
+    display: none;
+}
+#gallery-thumbnails {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.github-btn {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    background: #24292e;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75em 1.5em;
+    border-radius: 1em;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(36,41,46,0.10);
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    z-index: 20;
+    border: none;
+    outline: none;
+    gap: 0.5em;
+}
+.github-btn:hover,
+.github-btn:focus {
+    background: #444d56;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(36,41,46,0.18);
+}
+.github-logo {
+    fill: #fff;
+    flex-shrink: 0;
+}
+@media (max-width: 700px) {
+    .github-btn {
+        right: 1rem;
+        bottom: 1rem;
+        font-size: 1rem;
+        padding: 0.6em 1.1em;
+    }
+}
+.projects-section {
+    position: relative;
+}
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.contact-description {
+    font-size: 1.25rem;
+    color: #444;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.contact-email {
+    color: #F55B19;
+    text-decoration: underline;
+    transition: color 0.18s;
+}
+
+.contact-email:hover,
+.contact-email:focus {
+    color: #d94a0f;
+    outline: none;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-form label {
+    font-size: 1rem;
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #ececec;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.18s;
+    background: #fafafa;
+    color: #222;
+    resize: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #F55B19;
+    outline: none;
+}
+
+.contact-submit {
+    font-size: 1.25rem;
+    color: #fff;
+    background: #F55B19;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(245,91,25,0.07);
+}
+
+.contact-submit:hover,
+.contact-submit:focus {
+    background: #d94a0f;
+    outline: none;
+}
+
+@media (max-width: 900px) {
+    .contact-section {
+        padding: 3rem 0 2rem 0;
+    }
+    .contact-title {
+        font-size: 2rem;
+    }
+    .contact-description {
+        font-size: 1.1rem;
+    }
+    .contact-form {
+        max-width: 98vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-section {
+        padding: 2rem 0 1rem 0;
+        min-height: 100vh;
+    }
+    .contact-title {
+        font-size: 1.5rem;
+    }
+    .contact-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .contact-form {
+        gap: 1rem;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .projects-list {
+        max-width: 98vw;
+        gap: 1.5rem;
+        margin-left: 2vw;
+    }
+    .project-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding-bottom: 1.5rem;
+    }
+    .project-image {
+        width: 100%;
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+    }
+    .project-info {
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-section {
+        padding: 2rem 0 1rem 0;
+    }
+    .projects-title {
+        font-size: 1.3rem;
+        margin-left: 1vw;
+    }
+    .projects-list {
+        gap: 1rem;
+        margin-left: 1vw;
+    }
+    .project-card {
+        padding-bottom: 1rem;
+    }
+    .project-image {
+        height: 120px;
+    }
+}
+
+
+
+
+/* Font size adjustments for 1080p displays (1920x1080) */
+@media (max-width: 1920px) and (min-width: 1500px) and (max-height: 1080px) {
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .hero-button {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+@media (max-width: 1200px) {
+    .hero {
+        padding: 5rem 3rem;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+        max-width: 90vw;
+    }
+    .hero-lines img {
+        width: 25vw;
+        max-width: 250px;
+    }
+    .hero-disk {
+        width: 8rem;
+        height: 8rem;
+        right: -5rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .hero-lines,
+    .hero-disk {
+        display: none !important;
+    }
+    .hero {
+        padding: 2.5rem 1.5rem;
+        align-items: center;
+        text-align: center;
+    }
+    .hero-content {
+        align-items: center;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+        max-width: 100vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero {
+        padding: 1rem 0.5rem;
+    }
+    .hero-title {
+        font-size: 1.3rem;
+    }
+    .hero-title-highlight {
+        padding: 0.25rem 0.5rem;
+        font-size: 1em;
+        display: inline-block;
+        margin-top: 0.4em;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+        max-width: 100vw;
+    }
+    .hero-button {
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        margin-top: 1rem;
+    }
+}
