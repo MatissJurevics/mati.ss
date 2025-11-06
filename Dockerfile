@@ -39,7 +39,7 @@ RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
     echo '    add_header Content-Security-Policy "default-src '\''self'\'' https:; script-src '\''self'\'' https://cdn.jsdelivr.net '\''unsafe-inline'\''; style-src '\''self'\'' https://fonts.googleapis.com '\''unsafe-inline'\''; font-src '\''self'\'' https://fonts.gstatic.com; img-src '\''self'\'' data: https:;" always;' >> /etc/nginx/conf.d/default.conf && \
     echo '}' >> /etc/nginx/conf.d/default.conf
 
-# Expose port 80
+# Expose port 3321
 EXPOSE 3321
 
 # Start nginx
