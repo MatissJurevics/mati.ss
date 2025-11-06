@@ -9,7 +9,7 @@ COPY . /usr/share/nginx/html/
 
 # Create custom nginx configuration for SPA routing
 RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
-    echo '    listen 3000;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    listen 3321;' >> /etc/nginx/conf.d/default.conf && \
     echo '    server_name localhost;' >> /etc/nginx/conf.d/default.conf && \
     echo '    root /usr/share/nginx/html;' >> /etc/nginx/conf.d/default.conf && \
     echo '    index index.html;' >> /etc/nginx/conf.d/default.conf && \
@@ -40,7 +40,7 @@ RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
     echo '}' >> /etc/nginx/conf.d/default.conf
 
 # Expose port 80
-EXPOSE 3000
+EXPOSE 3321
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
